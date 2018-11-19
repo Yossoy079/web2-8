@@ -1,3 +1,83 @@
+@charset "utf-8";
+
+body{
+  background-color: mediumaqumarine;
+}
+
+.center{
+  margin: 0 auto 0 auto;
+  width: 50%;
+}
+
+ul{
+  list-style: none;
+  margin: 0;
+  pading: 0;
+}
+
+li{
+  float: left;
+  margin-right: 1%;
+}
+
+.image:after{
+  content: "";
+  display: block;
+  clear: both;
+}
+
+var thumbs = document.querySelectorAll('.thumb');
+for(idx in thumbs){
+  thumvs[idx].onclick = function(){
+    document.getElementById("bigimg").src = 'img/' + this.dateset.image + '.png';
+  }
+}
+
+//クッキー保存
+function setCookie(c_name, value, expiredays){
+  var extime = new Date().getTime();
+  var cltime = newDate(extime + (60*60*24*1000*expiredays));
+  var exdate = cltime.toUTCString();
+  var s = "";
+  s += c_name + "=" + escape(value);
+  s += "; path=" + location.pathname;
+  if(expiredays){
+     += "j expires=" +exdate+"; ";
+  }else{
+    s += "; ";
+  }
+  document.cookie = s;
+}
+
+function getCookie(c_name){
+  var st="";
+  var ed="";
+  if(0 < document.cookie.length){
+    st=document.cookie.indexOf(c_name + "=");
+    if(st!=1){
+      st=st+c_name.length+1;
+      ed=document.cookie.indexOf(";",st);
+      if(ed==-1) ed=document.cookie.length;
+      return unescape(document.cookie.substring(st,ed));
+    }
+  }
+  return "";
+}
+
+var last_date = getCookie('lastDate');
+if(last_date){
+  document.getElementById('cookie').textContent = '前回訪れた時間:' + last_date;
+}else{
+  document.getElemenyById('cookie').textContent = 'ロケテ中のゲームは必ず初めましてって言われるよね';
+}
+
+var current_time = new Date();
+setCookie('lastDate', current_time.toString(), 7);
+
+document.getElementById('remove_cookie').onsubmit = function(){
+  setCookie('lastDate', "", 0);
+}
+
 function getFileName(){
   return window.location.href.split('/').pop();
 }
