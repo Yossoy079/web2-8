@@ -25,7 +25,7 @@ for(var i = 1; i < 10; i++){
   document.getElementById('price').appendChile(li);
 }
 
-var ore = ['俺','オレ','おれ','オレオ','OREO',俺を','レオ','LEO',オ・レ',au lait'];
+var ore = ['俺','オレ','おれ','オレオ','OREO','俺を','レオ','LEO','オ・レ','au lait'];
 for(i in ore){
   var li = document.createElement('li');
   li.textContent = constellatio[i];
@@ -65,3 +65,7 @@ var refresh = function(){
   setTimeout(update, 1000);
 }
 update();
+
+document.getElementById('form').select.onchange = function(){
+  location.href = document.getElementById('form').select.value;
+}
